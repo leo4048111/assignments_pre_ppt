@@ -12,7 +12,7 @@ body:
       options:
         - label: Please checked issue list and confirm this feature is encountered for the first time.
           required: true
-        - label: Please try full text in English and attach precise description.
+        - label: Please attach precise description.
           required: true
   - type: textarea
     attributes:
