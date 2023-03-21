@@ -1,5 +1,5 @@
 name: Bug report
-description: bug report for OceanBase
+description: bug report for software_engineering_pre_ppt
 title: "[Bug]: "
 labels: [bug]
 assignees:
@@ -19,7 +19,7 @@ body:
       description: |
         Environment Details sometimes important 
       value: |
-        - OB Version&commit_id or other module version&commit_id (e.g. observer V3.1.2 8b23a93):
+        - OS Version&commit_id or other module version&commit_id (e.g. observer V3.1.2 8b23a93):
         - Hardware parameter:OS type & Compliler & CPU etc. 
         - Others
       render: markdown
