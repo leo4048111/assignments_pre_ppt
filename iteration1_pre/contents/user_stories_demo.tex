@@ -82,10 +82,29 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}{用户上传模型文件}
+    \begin{itemize}
+        \item 用户故事描述：作为一个AI绘画软件系统使用者，我想要上传我的模型文件，以便于能在软件系统中分享和运行我的模型。
+        \item 接口责任人：李其桐
+        \item 附加信息：由于模型权重文件一般大小较大，无法直接使用formdata进行上传。因此，小组在开发中经过讨论、研究和实践，初步开发了一套基于http的高可用大文件分段上传协议，用于实现大文件上传功能。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{用户上传模型文件}
+    \begin{itemize}
+        \item 功能页面设计:
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{contents/figure/model_upload.png}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{根据模型名字搜索模型}
     \begin{itemize}
         \item 用户故事描述：作为一个模型使用者，我想要根据模型名字搜索模型，以便于快速找到我需要的绘图模型和相关信息。
         \item 接口责任人：李其桐
+        \item 附加信息：需要能够通过模型名字进行模糊和联想搜索，忽略大小写、部分语序错误等。
     \end{itemize}
 \end{frame}
 
@@ -126,6 +145,7 @@
     \begin{itemize}
         \item 用户故事描述：作为一个模型使用者，我想要对一个模型发表评论，以便于表达我的意见和感受，以及和其他用户交流。
         \item 接口责任人：于采篱
+        \item 附加信息：当前评论区通过弹窗显示，不是非常美观，后期将结合模型详情显示等界面元素，作为一个单独页面的子控件实现
     \end{itemize}
 \end{frame}
 
@@ -140,7 +160,7 @@
     \begin{itemize}
         \item 用户故事描述：作为一个模型使用者，我想要删除我已发表的评论，以便于撤回我不想要的或错误的意见。
         \item 接口责任人：陈骁
-        \item 功能页面设计：前端还未实现
+        \item 功能页面设计：考虑到迭代2中会对评论区页面进行重构，现在实现前端交互逻辑意义不大，因此当前仅实现后端接口，前端交互逻辑将在迭代2的页面重构中一并实现。
     \end{itemize}
 \end{frame}
 
