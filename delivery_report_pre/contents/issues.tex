@@ -1,0 +1,52 @@
+%% introductioin.tex
+%% Copyright 2022 skyleaworlder
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2003/12/01 or later.
+%
+% This work has the LPPL maintenance status "maintained".
+%
+% This Current Maintainer of this work is skyleaworlder.
+%
+% This work consists of all the *.tex and *.sty files in
+%   https://github.com/TJ-CSCCG/Tongji-Beamer
+\section{项目技术债}
+    \begin{frame}
+    % “无序列表” 与 “有序列表” 使用
+    \frametitle{项目发布测试反馈与issue提取}
+        \footnotesize
+        \begin{block}{相关问题}
+            本小组基于迭代2项目发布系统测试的反馈，结合答辩过程中与甲方沟通的相关情况，经过迭代3会议讨论，提取了以下问题：
+            \begin{itemize}
+                \item 在高并发情景下，绘图请求切换模型过多可能导致Stable Diffusion服务缓存池溢出，导致服务崩溃
+                \item 模型查询、模型下载、模型上传等功能模块的后端接口由于数据库事务设计不当，存在性能瓶颈，导致用户体验不佳
+                \item SD服务生成图片存在合法性问题，部分图片中出现了不合理的色块、扭曲的图像结构和我国法律法规禁止在互联网平台上传播的敏感内容
+                \item 前端交互逻辑中存在不合理点，例如搜索界面的搜索按钮应该支持通过键盘按键触发，而不是需要用户手动点击；某些按钮功能提示缺失等
+                \item 配置的ECS服务器由于硬件条件限制存在性能瓶颈，在高并发情景下的请求响应与处理可能由于硬件瓶颈失败
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+    \frametitle{项目发布测试反馈与issue提取}
+        \footnotesize
+        \begin{block}{解决方案}
+            本小组针对以上问题，在迭代3开发会议上进行讨论，最终提出了以下解决方案：
+            \begin{itemize}
+                \item 优化SD服务缓存池策略，基于LRU合理设计缓存换出机制，保证缓存命中率的情况下尽可能减少缓存池溢出的可能性
+                \item 在服务端DAO操作和数据库事务之间，添加Redis中间件缓存访问机制，采用旁路缓存策略，将数据库访问压力转移到Redis上，从而在涉及到大表join查询或者高并发事务情景下减少数据库访问压力
+                \item 由小组的相关前端开发人员，在单元测试和集成测试中，重新从用户角度出发对于人机交互逻辑进行省察，从而以用户友好为核心导向，进一步优化前端界面交互逻辑的相关功能需求实现
+                \item 由小组的相关SD服务开发与维护人员，重新精读High-Resolution Image Synthesis with Latent Diffusion Models一文\cite{rombach2021highresolution},分别从prompt文本预处理方法、网络模型结构和权重文件检测的三个方向，对于<x>2image操作的生成图片合法性进行检测和优化
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+
+
+
+
