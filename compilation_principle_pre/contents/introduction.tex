@@ -1,0 +1,56 @@
+\section{课程设计内容}
+\begin{frame}
+    \frametitle{项目开发任务目标}
+    \footnotesize
+    \begin{itemize}
+        \item {类C编译器程序架构设计与实现：使用高级程序语言作为实现语言，设计并实现一个类C语言的编译器，编码实现编译器的组成部分。}
+        \item {词法分析任务：对于词法分析任务，给出类C语言的单词子集及机内表示，输入为源程序字符串，输出为单词的机内表示序列。}
+        \item {语法分析任务：对于语法分析任务，通过LR(1)或者递归下降等语法分析方法设计并且构建语法分析器，同时在语法分析过程中一遍地调用词法分析器的nextToken方法获取下一个token，推进语法分析过程。}
+        \item {中间代码生成任务：使用语法制导翻译技术，选择合适的中间代码表示形式（本项目中采用LLVM IR），要求能够在语法分析的同时生成中间代码，并且将生成结果保存到文件中。}
+        \item {目标代码输出任务：编译器能够根据输入的类C语言源程序，还有运行时的参数选择，针对不同的处理器架构（target），输出例如x86，x86-64，mips等多种汇编代码，并且根据运行时参数进行不同等级的代码优化。生成后的汇编代码文件可以链接第三方编译环境提供的相关类库，进一步生成可执行文件。}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{项目开发任务目标}
+    \footnotesize
+    \begin{itemize}
+        \item {实现过程、函数调用、指针、数组和GCC风格内联汇编的代码编译：本实验中，我已经实现了包括过程、函数调用（支持递归）、指针、数组等等各种类C语言的文法扩展和编译能力，使得编译器的功能更加健全与完备，具体实现的扩展功能点将在报告下文中进行详细阐述。}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{预备知识}
+    \footnotesize
+    \begin{itemize}
+        \item {词法分析器设计原理}
+        \item {文法分析方法，包括LR(1)分析方法、递归下降分析法，ACTION表和GOTO表的推导方法以及分析流程逻辑等等}
+        \item {类C语言语法规范文法的设计}
+        \item {语义分析与中间代码产生原理与技术}
+        \item {LLVM IR Builder库编译、集成与部署技术，用以发射规范的LLVM IR中间代码，这种中间代码表示形式相比于四元式而言可读性和规范性更强，并且更加容易进行代码优化。}
+        \item {中间代码优化与目标代码生成技术}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{开发环境}
+    \footnotesize
+    \begin{itemize}
+        \item {OS：Windows 11 Pro/Mac OS/Ubuntu20.04(可跨平台)}
+        \item {Language：CPP}
+        \item {IDE：vscode + visual studio}
+        \item {编译环境：Cmake + MinGW64 + MSVC + Clang}
+        \item {报告绘图工具：StarUML + Doxygen}
+        \item {LLVM版本：version 17.0.0 git Optimized build.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{依赖库}
+    \footnotesize
+    \begin{itemize}
+        \item {json.hpp (https://github.com/nlohmann/json)：用于以json格式dump tokens}
+        \item {rang.hpp (https://github.com/agauniyal/rang)：用于修改控制台输出字体的颜色、样式等。}
+        \item {LLVM version 17.0.0 (https://github.com/llvm/llvm-project)：使用llvm::cl::opt处理程序运行时的启动参数，使用LLVM提供的LLVM IR Builder相关接口生成LLVM中间代码，使用LLVM Pass进行代码优化和目标代码生成。}
+    \end{itemize}
+\end{frame}

@@ -1,0 +1,14 @@
+\section{项目详细设计}
+\begin{frame}
+    \frametitle{类设计}
+    \footnotesize
+    \begin{itemize}
+        \item {File类：用于储存读入的源文件内容，提供了操作文件的相关接口，包括数据获取、移动行号、信息记录等等}
+        \item {Lexer类：词法分析器实现主体类，在一遍过程中为语法分析器提供nextToken()接口用于推进分析过程}
+        \item {Parser和LR1Parser类：实现了递归下降和LR1分析两种语法分析方法的语法分析器实现主体类，输出相同的AST数据结构}
+        \item {LLVMIRGenerator和IRGenerator类：分别使用语法制导翻译技术，输出LLVM IR和四元式形式表示的中间代码序列}
+        \item {CodeGenerator类：使用LLVM IR中间代码序列作为输入，执行代码优化逻辑后输出可执行的目标文件}
+        \item {相关工具类：包括错误处理、日志记录、运行时参数解析等于项目实现相关的工具类，可在源码中查看，此处不再赘述}
+        \item {AST节点类：本实验中的AST节点类设计参考了Clang源码中的设计架构，为每种实现需求中的文法符号实现了对应的节点类型定义，此处重点阐述其中所有类型的具体含义}
+    \end{itemize}
+\end{frame}
